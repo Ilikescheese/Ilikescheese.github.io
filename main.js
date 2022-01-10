@@ -1,12 +1,12 @@
 let canvas = document.getElementById("canvas");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-let ctx = canvas.getContext("2d");
 
+let ctx = canvas.getContext("2d");
 ctx.fillStyle = "rgb(50, 221, 255)";
 ctx.strokeStyle = "rgb(235,235,235)";
 
-class Snowflake{
+class SnowFlake{
 	constructor(x,y,size) {
 		this.x = x;
 		this.y = y;
@@ -41,13 +41,10 @@ function randRange(min, max) {
 }
 
 let flakes = [];
-/*for(let i = 0; i < numFlakes; i++){
-	flakes.push(new Snowflake(randRange(0,window.innerWidth),0,16));
-}*/
 
 function animate(){
 	ctx.fillRect(0,0,canvas.width,canvas.height);
-	flakes.push(new Snowflake(randRange(0,window.innerWidth),0,randRange(8,32)));
+	flakes.push(new SnowFlake(randRange(0,window.innerWidth),0,randRange(8,32)));
 
 	let counter = 0;
 	flakes.forEach(flake => {
@@ -56,7 +53,7 @@ function animate(){
 		flake.x += 1 * randRange(-2,2);
 		flake.y += 1 * randRange(0,3);
 		if(flake.y >= window.innerWidth)
-			flakes.splice(counter,0);
+			flakes.splice(counter,1);
 
 		flake.render();
 	});
